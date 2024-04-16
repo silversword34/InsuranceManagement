@@ -6,10 +6,10 @@ node{
         echo 'Initialize Environment'
         mavenHome = /opt/maven name: 'maven' , type: 'maven'
         mavenCMD = "${mavenHome}/bin/mvn"
-        tag="3.0"
-	dockerHubUser="anujsharma1990"
-	containerName="insure-me"
-	httpPort="8081"
+        tag="latest"
+	dockerHubUser="silversword34"
+	containerName="nodejs-asi-insurance"
+	httpPort="80"
     }
     
     stage('Code Checkout'){
