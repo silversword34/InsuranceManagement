@@ -4,7 +4,7 @@ node{
     
     stage('Prepare Environment'){
         echo 'Initialize Environment'
-        mavenHome = "/opt/maven" name: 'maven' , type: 'maven'
+        mavenHome = opt name: 'maven' , type: 'maven'
         mavenCMD = "${mavenHome}/bin/mvn"
         tag="latest"
 	dockerHubUser="silversword34"
