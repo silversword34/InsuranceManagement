@@ -20,9 +20,6 @@ node{
         catch(Exception e){
             echo 'Exception occured in Git Code Checkout Stage'
             currentBuild.result = "FAILURE"
-            //emailext body: '''Dear All,
-            //The Jenkins job ${JOB_NAME} has been failed. Request you to please have a look at it immediately by clicking on the below link. 
-            //${BUILD_URL}''', subject: 'Job ${JOB_NAME} ${BUILD_NUMBER} is failed', to: 'jenkins@gmail.com'
         }
     }
 
@@ -38,11 +35,9 @@ node{
 
     stage('Publishing Image to DockerHub'){
         echo 'Pushing the docker image to DockerHub'
-        {
-			sh "docker login -u ${dockerHubUser} -p ${dockerHubPwd}"
-			sh "docker push ${dockerHubUser}/${containerName}:${tag}"
-			echo "Image push complete"
-        } 
+	sh "docker login -u ${dockerHubUser} -p ${dockerHubPwd}"
+	sh "docker push ${dockerHubUser}/${containerName}:${tag}"
+	echo "Image push complete"
     }   
 
 
