@@ -1,12 +1,13 @@
 node{
     
-    def mavenHome, mavenCMD, docker, tag, dockerHubUser, dockerHubPwd, containerName, httpPort = ""
+    def mavenHome, mavenCMD, docker, tag, WORKSPACE, dockerHubUser, dockerHubPwd, containerName, httpPort = ""
     
     stage('Prepare Environment'){
         echo 'Initialize Environment'
 	mavenHome="/opt/maven"
         mavenCMD = "${mavenHome}/bin/mvn"
         tag= "latest"
+	WORKSPACE= "/home/ubuntu/NodeJS"
 	dockerHubUser = "silversword34"
 	dockerHubPwd = "Docker.2023"    
 	containerName = "nodejs-asi-insurance"
@@ -21,6 +22,10 @@ node{
             echo 'Exception occured in Git Code Checkout Stage'
             currentBuild.result = "FAILURE"
         }
+    }
+
+    dir("${env.WORKSPACE}/aQA"){
+        sh "pwd"
     }
 
     stage('Docker Image Build'){
