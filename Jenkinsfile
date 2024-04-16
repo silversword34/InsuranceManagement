@@ -25,12 +25,12 @@ node{
 
     stage('Docker Image Build'){
         echo 'Creating Docker image'
-        sh "cd /home/node/app; docker build -t ${dockerHubUser}/${containerName}:${tag} --pull --no-cache ."
+        sh "docker build -t ${dockerHubUser}/${containerName}:${tag} --pull --no-cache ."
     }
 
     stage('Docker Image Scan'){
         echo 'Scanning Docker image for vulnerbilities'
-        sh "cd /home/node/app; docker build -t ${dockerHubUser}/${containerName}:${tag} ."
+        sh "docker build -t ${dockerHubUser}/${containerName}:${tag} ."
     } 
 
     stage('Publishing Image to DockerHub'){
