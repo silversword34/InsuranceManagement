@@ -31,6 +31,10 @@ node{
         sh "docker build -t $dockerHubUser/$containerName:$tag --pull --no-cache ."
     }
 
+    stage('Docker Image Scan'){
+        echo 'Scanning Docker image for vulnerbilities'
+        sh "docker build -t ${dockerHubUser}/${containerName}:${tag} ."
+    } 
 
 }
 
