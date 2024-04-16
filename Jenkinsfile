@@ -1,12 +1,13 @@
 node{
     
-    def mavenHome="/opt/maven", mavenCMD, docker, tag, dockerHubUser, containerName, httpPort = ""
+    def mavenHome="/opt/maven", mavenCMD, docker, tag, dockerHubUser, dockerHubPwd, containerName, httpPort = ""
     
     stage('Prepare Environment'){
         echo 'Initialize Environment'
         mavenCMD = "${mavenHome}/bin/mvn"
         tag="latest"
 	dockerHubUser="silversword34"
+	dockerHubPwd="Docker.2023"    
 	containerName="nodejs-asi-insurance"
 	httpPort="80"
     }
@@ -36,9 +37,9 @@ node{
 	
     stage('Publishing Image to DockerHub'){
         echo 'Pushing the docker image to DockerHub'
-        withCredentials([usernamePassword(credentialsId: 'dockerHubAccount', usernameVariable: 'silversword34', passwordVariable: 'Docker.2023')]) {
-			sh "docker login -u $dockerUser -p $dockerPassword"
-			sh "docker push $dockerUser/$containerName:$tag"
+        {
+			sh "docker login -u $dockerHubUser -p $dockerHubPwd"
+			sh "docker push $dockerHubUser/$containerName:$tag"
 			echo "Image push complete"
         } 
     }    
