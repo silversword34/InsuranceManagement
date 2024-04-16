@@ -1,5 +1,5 @@
 FROM node:10-alpine
-WORKDIR /home/ubuntu/NodeJS
+WORKDIR /NodeJS
 COPY package*.json ./
 RUN npm install
 EXPOSE 1982
