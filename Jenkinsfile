@@ -40,6 +40,13 @@ node{
 	echo "Image push complete"
     }   
 
+    stage('Docker Container Deployment'){
+        echo 'Docker Container Deployment is starting ...'
+	sh "docker rm $containerName -f"
+	sh "docker pull $dockerHubUser/$containerName:$tag"
+	sh "docker run -d --rm -p $httpPort:1982 --name $containerName $dockerHubUser/$containerName:$tag"
+	echo "Application started on port: ${httpPort} (http)"
+	}
 
 }
 
