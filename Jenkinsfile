@@ -25,7 +25,7 @@ node{
 
     stage('Docker Image Build'){
         echo 'Creating Docker image'
-	sh "docker build . -t ${dockerHubUser}/${containerName}:${tag} --pull --no-cache -f /tmp/NodeJS/Dockerfile"
+	sh "docker build . -t ${dockerHubUser}/${containerName}:${tag} --pull --no-cache -f /NodeJS/Dockerfile"
     }
 
     stage('Docker Image Scan'){
