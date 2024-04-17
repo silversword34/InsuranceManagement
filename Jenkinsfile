@@ -33,13 +33,6 @@ node{
         sh "docker build -t ${dockerHubUser}/${containerName}:${tag} ."
     } 
 
-    stage('Publishing Image to DockerHub'){
-        echo 'Pushing the docker image to DockerHub'
-	sh "docker login -u ${dockerHubUser} -p ${dockerHubPwd}"
-	sh "docker push ${dockerHubUser}/${containerName}:${tag}"
-	echo "Image push complete"
-    }   
-
     stage('Docker Container Deployment'){
         echo 'Docker Container Deployment is starting ...'
 	sh "docker rm $containerName -f"
