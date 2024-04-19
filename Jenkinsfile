@@ -37,7 +37,7 @@ node{
         echo 'Docker Container Deployment is starting ...'
 	sh "docker rm $containerName -f"
 	sh "docker pull $dockerHubUser/$containerName:$tag"
-	sh "docker run --name $containerName -p 1982:$httpPort -d $dockerHubUser/$containerName:$tag"
+	sh "docker run --name $containerName -p 80:1982 -d $dockerHubUser/$containerName:$tag"
 	echo "Application started on port: ${httpPort} (http)"
 	}
 
